@@ -2,12 +2,7 @@
 
 namespace Statusboard;
 
-class GraphJsonFormatter {
-
-    /**
-     * @var array
-     */
-    protected $data;
+class GraphJsonFormatter extends DataFormatter {
 
     protected function getDataSequences() {
         if(count($this->data) <= 0) {
@@ -46,21 +41,5 @@ class GraphJsonFormatter {
             'datasequences' => $this->getDataSequences()
         );
         return json_encode(array('graph' => $config), JSON_PRETTY_PRINT);
-    }
-
-    /**
-     * @return array
-     */
-    public function getData() {
-        return $this->data;
-    }
-
-    /**
-     * @param array $data
-     * @return $this
-     */
-    public function setData($data) {
-        $this->data = $data;
-        return $this;
     }
 }
