@@ -17,7 +17,6 @@ class ExpandsInLast24hoursWidget extends AbstractWidget {
             ->interval('hourly')
             ->execute()
             ->toArray();
-        $data = $qb->execute()->toArray();
         return (new GraphJsonFormatter())->setData($data)->toJson();
     }
 }
