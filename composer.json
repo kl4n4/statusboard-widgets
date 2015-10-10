@@ -1,0 +1,19 @@
+{
+    "name": "kl4n4/statusboard-widgets",
+    "description": "Simple toolset to generate data feeds formatted to work with Panic's Statusboard 2.0 iPad App",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "require": {
+        "league/plates": "3.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Klaner",
+            "email": "thomas@iwa-tech.com"
+        }
+    ]
+}
