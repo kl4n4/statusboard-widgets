@@ -80,6 +80,10 @@
     </style>
     -->
     <style type="text/css">
+        @font-face {
+            font-family: "Roadgeek2005SeriesD";
+            src: url("http://panic.com/fonts/Roadgeek 2005 Series D/Roadgeek 2005 Series D.otf");
+        }
         @media screen and (min-device-width: 1600px) and (max-device-width: 2400px) {
             html {
                 background: black;

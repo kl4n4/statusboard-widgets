@@ -26,6 +26,9 @@ abstract class HtmlDataFormatter extends DataFormatter {
             self::$templates->registerFunction('substr', function ($string, $start, $length) {
                 return substr($string, $start, $length);
             });
+            self::$templates->registerFunction('cleanWikiSyntax', function ($string) {
+                return preg_replace("/\[(wiki|url)\=(?P<url>https?:\/\/[^\]]*)\](?P<text>[^\[]*)\[\/(wiki|url)\]/i", "$3", $string);
+            });
         }
         return self::$templates;
     }

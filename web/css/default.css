@@ -122,10 +122,10 @@ legend
     color: #000
 }
 
-*
-{
-    color: transparent
-}
+/***/
+/*{*/
+    /*color: transparent*/
+/*}*/
 
 body
 {
@@ -146,7 +146,7 @@ table
     border-collapse: collapse;
     empty-cells: show;
     table-layout: fixed;
-    font-family: 'StatusBoardFont', 'StatusBoardFontLight';
+    font-family: 'StatusBoardFont', 'StatusBoardFontLight', 'Roadgeek2005SeriesD', sans-serif;
     text-transform: uppercase;
     border-spacing: 0px;
     width: 100%;
@@ -182,7 +182,7 @@ td img
 th
 {
     text-align: center;
-    font-family: 'StatusBoardFontLight', 'StatusBoardFont';
+    font-family: 'StatusBoardFontLight', 'StatusBoardFont', 'Roadgeek2005SeriesD', sans-serif;
     min-height: 45px;
     font-size: 1.5em;
     color: rgb(100, 100, 100);
@@ -191,7 +191,7 @@ th
 
 .smallType
 {
-    font-family: 'StatusBoardFontLight', 'StatusBoardFont';
+    font-family: 'StatusBoardFontLight', 'StatusBoardFont', 'Roadgeek2005SeriesD', sans-serif;
     min-height: 45px;
     font-size: 1.3em;
     color: rgb(200, 200, 200);

@@ -9,7 +9,7 @@ class Api {
     /*
      * ToDo: implement API class properly
      */
-    public function getLatestUpdates() {
-        return @json_decode(file_get_contents(self::ENDPOINT . '/feed?status=enabled&limit=3&sort=-releaseDate'), true);
+    public function getLatestUpdates($limit) {
+        return @json_decode(file_get_contents(self::ENDPOINT . '/feed?status=enabled&limit=' . $limit . '&sort=-releaseDate'), true);
     }
 }
