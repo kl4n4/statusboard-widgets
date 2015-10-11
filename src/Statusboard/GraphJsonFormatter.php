@@ -4,6 +4,9 @@ namespace Statusboard;
 
 class GraphJsonFormatter extends DataFormatter {
 
+    /** @var string */
+    protected $title = 'Graph';
+
     protected function getDataSequences() {
         if(count($this->data) <= 0) {
             return [];
@@ -37,9 +40,25 @@ class GraphJsonFormatter extends DataFormatter {
 
     public function toJson() {
         $config = array(
-            'title' => 'Update Expands',
+            'title' => $this->getTitle(),
             'datasequences' => $this->getDataSequences()
         );
         return json_encode(array('graph' => $config), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+        return $this;
     }
 }
