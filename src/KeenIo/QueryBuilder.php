@@ -38,6 +38,11 @@ class QueryBuilder {
         return $this;
     }
 
+    public function targetProperty($targetProperty) {
+        $this->parameters['target_property'] = $targetProperty;
+        return $this;
+    }
+
     public function groupBy($groupBy) {
         $this->parameters['group_by'] = $groupBy;
         return $this;
