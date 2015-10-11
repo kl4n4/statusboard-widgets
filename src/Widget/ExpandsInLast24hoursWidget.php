@@ -3,7 +3,6 @@
 namespace Widget;
 
 use KeenIo\Api;
-use KeenIo\Result;
 use Statusboard\GraphJsonFormatter;
 
 class ExpandsInLast24hoursWidget extends AbstractWidget {

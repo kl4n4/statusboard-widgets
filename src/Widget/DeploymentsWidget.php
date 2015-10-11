@@ -11,6 +11,6 @@ class DeploymentsWidget extends AbstractWidget {
             array('name' => 'Updatemi', 'revision' => 'b2f7cccf79cfcd8f050752b0c1a02cae83f7f4e8', 'branch' => 'master', 'date' => 'August 14, 2015'),
             array('name' => 'Image Service', 'revision' => '02cae83f7f9cfcd8f050752b0c1ab2f7cccf74e8', 'branch' => 'feature/test', 'date' => 'June 25, 2015'),
         ]);
-        return $table->toHtml();
+        return $table->setTemplate('table-deployments')->toHtml();
     }
 }
