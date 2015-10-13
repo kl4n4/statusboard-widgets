@@ -2,15 +2,64 @@
 
 namespace Widget;
 
+use KeenIo\Api;
 use Statusboard\TableHtmlFormatter;
 
 class DeploymentsWidget extends AbstractWidget {
+
+    /** @var Api */
+    protected $api;
+
+    protected function getParamsRegex() {
+        return '/\/(?<environment>[a-z_]*)/';
+    }
+
     public function getWidget() {
-        $table = (new TableHtmlFormatter())->setData([
-            array('name' => 'Updatemi Service', 'revision' => '9cfcd8f050752b0c1ab2f7cccf702cae83f7f4e8', 'branch' => 'beta', 'date' => 'May 10, 2015'),
-            array('name' => 'Updatemi', 'revision' => 'b2f7cccf79cfcd8f050752b0c1a02cae83f7f4e8', 'branch' => 'master', 'date' => 'August 14, 2015'),
-            array('name' => 'Image Service', 'revision' => '02cae83f7f9cfcd8f050752b0c1ab2f7cccf74e8', 'branch' => 'feature/test', 'date' => 'June 25, 2015'),
-        ]);
+        $environment = $this->getParam('environment', 'production');
+        $data = [];
+        foreach(['Updatemi', 'Updatemi Service'] as $app) {
+            $deploymentInfo = $this->getDeploymentInfoFor($environment, $app);
+            $data[] = array(
+                'name' => @$deploymentInfo['application'] ?: $app,
+                'branch' => @$deploymentInfo['branch'],
+                'revision' => @$deploymentInfo['revision'],
+                'date' => (new \DateTime(@$deploymentInfo['keen']['created_at']))->format('M d H:i')
+            );
+        }
+        $table = (new TableHtmlFormatter())->setData($data);
         return $table->setTemplate('table-deployments')->toHtml();
+    }
+
+    /**
+     * @return Api
+     */
+    protected function getApi() {
+        if(!$this->api) {
+            $this->api = new Api(API_PROJECT, API_READ_KEY);
+        }
+        return $this->api;
+    }
+
+    protected function getDeploymentInfoFor($environment, $app) {
+        $qb = $this->getApi()->getQueryBuilder();
+        return @$qb->type($qb::TYPE_EXTRACTION)
+            ->collection('deployments')
+            ->timezone('UTC')
+            ->timeframe('this_14_days')
+            ->filters([
+                array(
+                    'property_name' => 'environment',
+                    'operator' => 'eq',
+                    'property_value' => $environment,
+                ),
+                array(
+                    'property_name' => 'application',
+                    'operator' => 'eq',
+                    'property_value' => $app,
+                )
+            ])
+            ->limit(1)
+            ->execute()
+            ->toArray()[0];
     }
 }

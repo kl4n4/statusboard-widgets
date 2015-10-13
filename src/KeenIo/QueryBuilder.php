@@ -4,6 +4,8 @@ namespace KeenIo;
 
 class QueryBuilder {
 
+    const TYPE_EXTRACTION = 'extraction';
+
     /**
      * @var Api $api
      */
@@ -63,8 +65,8 @@ class QueryBuilder {
         return $this;
     }
 
-    public function filter($filter) {
-        $this->parameters['filter'] = $filter;
+    public function filters(array $filters) {
+        $this->parameters['filters'] = urlencode(json_encode($filters));
         return $this;
     }
 
@@ -74,7 +76,11 @@ class QueryBuilder {
     }
 
     public function limit($limit) {
-        $this->getResult()->limit($limit);
+        if($this->type == self::TYPE_EXTRACTION) {
+            $this->parameters['latest'] = $limit;
+        } else {
+            $this->getResult()->limit($limit);
+        }
         return $this;
     }
 

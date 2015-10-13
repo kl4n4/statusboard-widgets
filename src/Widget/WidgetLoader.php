@@ -14,11 +14,12 @@ class WidgetLoader {
 
     /**
      * @param string $name
+     * @param string $params as url e.g /production/details
      * @return AbstractWidget
      */
-    public static function load($name) {
+    public static function load($name, $params) {
         $widgetClass = '\\Widget\\' . self::getProperWidgetName($name);
-        return new $widgetClass();
+        return (new $widgetClass())->setParams($params);
     }
 
     protected static function getProperWidgetName($name) {

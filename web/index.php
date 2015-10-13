@@ -15,9 +15,10 @@ define('API_PROJECT',  $_SERVER['KEENIO_API_PROJECT']);
 $AVAILABLE_PARAMS = ['type', 'collection', 'group_by', 'timezone', 'timeframe', 'filter', 'interval', 'sort', 'limit'];
 
 // widgets
-if(preg_match('/\/widgets\/(.*)/i', @$_SERVER['REDIRECT_URL'], $matches)) {
-    if(($widgetName = @$matches[1]) && WidgetLoader::exists($widgetName)) {
-        $widget = WidgetLoader::load($widgetName);
+if(preg_match('/\/widgets\/([a-zA-Z0-9]*)(.*)?/i', @$_SERVER['REDIRECT_URL'], $matches)) {
+    @list($url, $widgetName, $params) = $matches;
+    if(!empty($widgetName) && WidgetLoader::exists($widgetName)) {
+        $widget = WidgetLoader::load($widgetName, $params);
         die($widget->getWidget());
     } else {
         die('Widget "' . $widgetName . '" not installed/available');
