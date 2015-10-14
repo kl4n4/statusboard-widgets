@@ -29,7 +29,7 @@
             region:'150',
             resolution: 'countries',
             //displayMode: 'markers',
-            colorAxis: {colors: ['lightgreen', 'darkgreen']}
+            colorAxis: {colors: ['#fcd', '#c06']}
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
