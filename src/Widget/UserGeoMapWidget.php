@@ -26,7 +26,7 @@ class UserGeoMapWidget extends AbstractWidget {
             ->toArray();
         $html = (new DiyHtmlFormatter())
             ->setName('User Geo Map')
-            ->setDefaultSize(8,4)
+            ->setDefaultSize(7,4)
             ->setData($data);
         return $html->setTemplate('diy-user-geo-map')->toHtml();
     }

@@ -25,6 +25,7 @@
         ];
 
         var options = {
+            backgroundColor: 'transparent',
             region:'150',
             resolution: 'countries',
             //displayMode: 'markers',
