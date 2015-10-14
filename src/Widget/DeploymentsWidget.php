@@ -23,7 +23,7 @@ class DeploymentsWidget extends AbstractWidget {
                 'name' => @$deploymentInfo['application'] ?: $app,
                 'branch' => @$deploymentInfo['branch'],
                 'revision' => @$deploymentInfo['revision'],
-                'date' => (new \DateTime(@$deploymentInfo['keen']['created_at']))->format('M d H:i')
+                'date' => (new \DateTime(@$deploymentInfo['keen']['created_at']))->format('M d, H:i')
             );
         }
         $table = (new TableHtmlFormatter())->setData($data);
