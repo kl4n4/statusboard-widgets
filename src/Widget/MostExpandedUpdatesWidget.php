@@ -27,7 +27,7 @@ class MostExpandedUpdatesWidget extends AbstractWidget {
 
     private function trimTitles($data) {
         foreach($data as &$entry) {
-            $entry['label'] = mb_strimwidth(@$entry['label'], 0, 25, "...");
+            $entry['label'] = utf8_encode(mb_strimwidth(@$entry['label'], 0, 25, "..."));
         }
         return $data;
     }
