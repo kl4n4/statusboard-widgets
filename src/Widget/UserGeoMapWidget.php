@@ -13,11 +13,7 @@ class UserGeoMapWidget extends AbstractWidget {
             ->collection('Loaded%20a%20Page')
             ->targetProperty('user.userId')
             ->filters([
-                array(
-                    'property_name' => 'ip_geo_info.continent',
-                    'operator' => 'eq',
-                    'property_value' => 'Europe',
-                )
+                $qb->getFilterExpression('ip_geo_info.continent', 'Europe')
             ])
             ->groupBy('ip_geo_info.country')
             ->timezone('UTC')

@@ -11,7 +11,10 @@ class MostExpandedUpdatesWidget extends AbstractWidget {
         $api = new Api(API_PROJECT, API_READ_KEY);
         $qb = $api->getQueryBuilder();
         $data = $qb->type('count')
-            ->collection('update_expand')
+            ->collection('update')
+            ->filters([
+                $qb->getFilterExpression('action', 'expand')
+            ])
             ->groupBy('label')
             ->timezone('UTC')
             ->timeframe('this_2_days')

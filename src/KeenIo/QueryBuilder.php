@@ -126,4 +126,18 @@ class QueryBuilder {
         return $this->result;
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param string $operator
+     * @return FilterExpression
+     */
+    public function getFilterExpression($name, $value, $operator = FilterExpression::OP_EQ) {
+        return (new FilterExpression())
+            ->setName($name)
+            ->setValue($value)
+            ->setOperator($operator)
+            ->toArray();
+    }
+
 }

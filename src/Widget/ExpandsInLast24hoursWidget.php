@@ -10,7 +10,10 @@ class ExpandsInLast24hoursWidget extends AbstractWidget {
         $api = new Api(API_PROJECT, API_READ_KEY);
         $qb = $api->getQueryBuilder();
         $data = $qb->type('count')
-            ->collection('update_expand')
+            ->collection('update')
+            ->filters([
+                $qb->getFilterExpression('action', 'expand')
+            ])
             ->timezone('UTC')
             ->timeframe('this_24_hours')
             ->interval('hourly')

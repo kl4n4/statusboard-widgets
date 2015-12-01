@@ -47,16 +47,8 @@ class DeploymentsWidget extends AbstractWidget {
             ->timezone('UTC')
             ->timeframe('this_14_days')
             ->filters([
-                array(
-                    'property_name' => 'environment',
-                    'operator' => 'eq',
-                    'property_value' => $environment,
-                ),
-                array(
-                    'property_name' => 'application',
-                    'operator' => 'eq',
-                    'property_value' => $app,
-                )
+                $qb->getFilterExpression('environment', $environment),
+                $qb->getFilterExpression('application', $app)
             ])
             ->limit(1)
             ->execute()
